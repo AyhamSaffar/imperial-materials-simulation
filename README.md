@@ -2,7 +2,7 @@
 
 Molecular simulation tool made for the theory and simulation module taken by materials science and engineering undergraduates at Imperial College London.
 
-![minimal use example](minimal_use_example.png)
+![minimal use example](examples/minimal_use_example.png)
 
 It models the forces acting on a molecule in different situations and displays the results live using an interactive Jupyter notebook dashboard.
 
@@ -46,15 +46,15 @@ All functionality and details are well documented in the doc-strings of the main
 
 *Minimal use*
 
-![minimal use example](minimal_use_example.png)
+![minimal use example](examples/minimal_use_example.png)
 
 *Data collection*
 
-![data collection example](data_collection_example.png)
+![data collection example](examples/data_collection_example.png)
 
 *Detailed Analysis*
 
-![detailed analysis example](detailed_analysis_example.png)
+![detailed analysis example](examples/detailed_analysis_example.png)
 
 ## Support
 
