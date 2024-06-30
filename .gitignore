@@ -1,0 +1,4 @@
+build/*
+dist/*
+imperial_materials_simulation.egg-info/*
+upload_guide.txt
