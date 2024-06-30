@@ -1,5 +1,6 @@
 build/*
 dist/*
+imperial_materials_simulation/__pycache__/*
 imperial_materials_simulation.egg-info/*
 upload_guide.txt
 setup.py
