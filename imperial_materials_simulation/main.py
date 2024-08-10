@@ -405,10 +405,10 @@ def load_simulation(path: str) -> Simulation:
    '''
    Load in a simulation object from a file. For safety reasons, only load files you have created.
    
-      Parameters
-      ----------
-      path : str
-         Simulation file location to be read in. 
+   Parameters
+   ----------
+   path : str
+      Simulation file location to be read in. 
    '''
    with open(path, mode='rb') as file:
       return pickle.load(file)
