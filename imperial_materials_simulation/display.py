@@ -154,7 +154,7 @@ class SimulationDashboard():
         self.left_ax.set_yscale('log' if left_data.max() > left_data.min()*100 and left_data.min() > 0 else 'linear')
         self.right_ax.set_yscale('log' if right_data.max() > right_data.min()*100 and right_data.min() > 0 else 'linear')
         self.right_ax.ticklabel_format(axis='x', style='sci', scilimits=(0,4))
-        interval = 10 ** max(1, np.log10(len(left_data)).astype(int) - 3) #makes larger plots a bit faster
+        interval = 10 ** max(1, np.log10(len(left_data)).astype(int) - 3) #makes longer plots a bit faster
         self.left_ax.plot(np.arange(0, len(left_data), interval), left_data[::interval], color='red')
         self.right_ax.plot(np.arange(0, len(right_data), interval), right_data[::interval], color='blue')
         self.line = self.right_ax.axvline(x=self.step_slider.value, color='black', linestyle='--')
