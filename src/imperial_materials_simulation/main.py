@@ -110,6 +110,28 @@ class Simulation():
       self.run += 1
       self.microstructures.append({0: pd.DataFrame(self.positions, columns=['x', 'y', 'z'])})
       step_data = []
+
+      bond_displacements = self.positions[1:] - self.positions[:-1]
+      bond_lengths = np.sum(bond_displacements**2, axis=1) ** 0.5
+      bond_lengths = bond_lengths.reshape(bond_lengths.shape[0], 1) #enables broadcasting in bond direction calculation
+      bond_extensions = bond_lengths - 3.0
+      bond_directions = bond_displacements / bond_lengths
+      bond_forces = -3 * bond_extensions * bond_directions
+      bond_atom_forces = np.zeros(shape=self.positions.shape)
+      bond_atom_forces[:-1] -= bond_forces #each bond exerts a negative force on the left atom
+      bond_atom_forces[1:] += bond_forces #each bond exerts a positive force on the right atom
+      total_bond_potential = np.sum(3.0/2 * (bond_extensions**2))
+
+      i=0
+      displacements = self.positions[i+3:] - self.positions[i]
+      lengths = np.sum(displacements**2, axis=1) ** 0.5
+      lengths = lengths.reshape(lengths.shape[0], 1) #allows broadcasting in following calculations
+      directions = displacements / lengths
+      sixpowers = (3.0/lengths) ** 6
+      twelvepowers = sixpowers ** 2
+      potential = 1.0
+      atom_forces = 3 * 12/lengths * (twelvepowers - sixpowers) * directions
+      forces = np.zeros((self.n_atoms,3))
       for step in range(n_steps):
          F_b, PE_b = physics.get_bonding_interactions(self.positions, self.bond_length, self.spring_constant)
          F_nb, PE_nb = physics.get_non_bonding_interactions(self.positions, self.epsilon, self.sigma)
