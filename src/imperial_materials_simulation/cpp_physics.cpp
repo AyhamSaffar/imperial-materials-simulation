@@ -1,5 +1,4 @@
 #include <array>
-#include <cmath>
 #include <iostream>
 using namespace std;
 
@@ -7,8 +6,9 @@ template<size_t SIZE>
 double get_kinetic_energy(array<double, SIZE>& velocities, double mass) {
     double kinetic_energy = 0.0;
     for (double velocity: velocities) {
-        kinetic_energy += mass/2 * pow(velocity, 2);
+        kinetic_energy += velocity * velocity;
     };
+    kinetic_energy *= mass / 2;
     return kinetic_energy;
 }
 
