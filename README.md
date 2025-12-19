@@ -93,8 +93,6 @@ The following features could be implemented down the road following popular dema
 
 - Add artist to run dataframe on dashboard so numbers are displayed in scientific format and the row for the current run gets highlighted.
 
-- Add arguements to the .display method to allow for changing the colour and style of the 3D rendered molecule.
-
 ## Authors and Acknowledgment
 
 This program was written by me, Ayham Al-Saffar, based on Paul Tangney's initial codebase and was funded by an Imperial College London Student Shapers grant.
