@@ -356,22 +356,44 @@ class Simulation():
       except NameError:
          warnings.warn('This functionality is only available in a Jupyter Notebook')
 
-   def save(self, path: str) -> None:
+   def to_file(self, path: str) -> None:
       '''
-      Save simulation object as a btye file.
+      Save simulation object as a binary file. This allows you to fully recreate the Python Simulation object at a
+      later time. 
    
       Parameters
       ----------
       path : str
-         File location where Simulation object will be stored.  
+         File location where Simulation object will be created. Adds .ims suffix to file if not already supplied.
       '''
       if self.is_being_displayed:
          dashboard = self.dashboard
          self.dashboard = None #the dashboard instance cannot be saved but can be recreated at any time
+      path += ".ims" if not path.endswith(".ims") else ""
       with open(path, mode='wb') as file:
          pickle.dump(self, file)
       if self.is_being_displayed:
          self.dashboard = dashboard
+
+   def to_excel(self, path: str) -> None:
+      '''
+      Save simulation data to excel. The first sheet will contain the summary run data, while each subsequent sheet
+      will contain the step data for each following run. Adds .xlsx suffix to file if not already supplied. Note may
+      take a minute or two for simulations with longer runs.
+   
+      Parameters
+      ----------
+      path : str
+         File location where Simulation excel document will be created.  
+      '''
+      path += ".xlsx" if not path.endswith(".xlsx") else ""
+      with pd.ExcelWriter(path, engine="xlsxwriter") as writer:
+         self.run_data.to_excel(writer, sheet_name="Summary", index=False)
+         writer.sheets["Summary"].autofit()
+         for run in range(1, len(self.run_data)):
+            name = f"{run}. {self.run_data.loc[run, "type"]} run"
+            self.step_data[run].to_excel(writer, sheet_name=name, index=False)
+            writer.sheets[name].autofit()
 
    def _log_run_data(self, run_type: str, n_steps: int, temperature: float) -> None:
       '''logs the final state of molecule after each run and stores it in the self.run_data dataframe'''
