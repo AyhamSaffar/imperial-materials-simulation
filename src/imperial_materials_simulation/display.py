@@ -71,7 +71,7 @@ class SimulationDashboard():
         molecule_box = ipy.VBox([self.mol_viewer_box])
         if show_config_panel:
             molecule_box.children = [self.mol_viewer_box, mol_display_options]
-        self._redraw_molecule()
+        # self._redraw_molecule() # temporarily disabled as causes molecule display to break
         
         #full display widget box
         bottom_box = ipy.HBox(children=[plot_box, molecule_box], layout=ipy.Layout(align_items='center'))
