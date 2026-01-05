@@ -369,6 +369,7 @@ class Simulation():
       if self.is_being_displayed:
          dashboard = self.dashboard
          self.dashboard = None #the dashboard instance cannot be saved but can be recreated at any time
+      path = str(path) #in case Pathlib Path object is passed in
       path += ".ims" if not path.endswith(".ims") else ""
       with open(path, mode='wb') as file:
          pickle.dump(self, file)
@@ -386,6 +387,7 @@ class Simulation():
       path : str
          File location where Simulation excel document will be created.  
       '''
+      path = str(path) #in case Pathlib Path object is passed in
       path += ".xlsx" if not path.endswith(".xlsx") else ""
       with pd.ExcelWriter(path, engine="xlsxwriter") as writer:
          self.run_data.to_excel(writer, sheet_name="Summary", index=False)
