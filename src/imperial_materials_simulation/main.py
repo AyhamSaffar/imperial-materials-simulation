@@ -300,7 +300,7 @@ class Simulation():
                                                     self.bond_length, self.spring_constant)
       PE = energy_tracker.get_total_potential_energy()
       max_displacement_size = self.bond_length * random_scale
-      atom_indexes = rand.randint(low=0, high=self.n_atoms-1, size=n_steps)
+      atom_indexes = rand.randint(low=0, high=self.n_atoms, size=n_steps)
       displacements = rand.uniform(low=-max_displacement_size/2, high=max_displacement_size/2, size=(n_steps, 3))
       for step in range(n_steps):
          is_displacement_accepted = False

@@ -1,6 +1,6 @@
 [project]
 name = "imperial-materials-simulation"
-version = "1.2.1"
+version = "1.2.2"
 description = "Molecular simulation tool made for ICL materials students"
 readme = "README.md"
 requires-python = ">=3.9"
