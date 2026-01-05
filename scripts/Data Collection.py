@@ -3,7 +3,7 @@ import concurrent.futures as cf #Python standard multiprocessing library
 
 def sample_workflow(temperature: int) -> None:
     #reduce size of simulation files by increasing the microstructure logging interval
-    simulation = ims.Simulation(n_atoms=22, starting_temperature=temperature, microstructure_logging_interval=1_000)
+    simulation = ims.Simulation(n_atoms=21, starting_temperature=temperature, microstructure_logging_interval=1_000)
     simulation.NVT_run(n_steps=100_000, temperature=temperature)
     simulation.MMC_run(n_steps=500_000, temperature=temperature)
     simulation.to_file(f'simulation {temperature}k.ims') 

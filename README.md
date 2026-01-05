@@ -58,11 +58,6 @@ Community contributions are also welcome. Feel free to create a pull request if 
 
 ## Development Workflow
 
-Download the repo.
-
-    git clone https://github.com/AyhamSaffar/imperial-materials-simulation.git
-
-
 Install [uv](https://docs.astral.sh/uv/):
 
     winget install --id=astral-sh.uv  -e
@@ -70,6 +65,14 @@ Install [uv](https://docs.astral.sh/uv/):
 or
 
     curl -LsSf https://astral.sh/uv/install.sh | sh
+
+Download the repo.
+
+    git clone https://github.com/AyhamSaffar/imperial-materials-simulation.git
+
+Enter created repo.
+
+    cd imperial-materials-simulation
 
 Create environment
 
