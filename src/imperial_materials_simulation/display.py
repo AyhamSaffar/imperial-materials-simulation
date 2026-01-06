@@ -71,7 +71,7 @@ class SimulationDashboard():
         molecule_box = ipy.VBox([self.mol_viewer_box])
         if show_config_panel:
             molecule_box.children = [self.mol_viewer_box, mol_display_options]
-        # self._redraw_molecule() # temporarily disabled as causes molecule display to break
+        # self._redraw_molecule() #! temporarily disabled as causes molecule display to break
         
         #full display widget box
         bottom_box = ipy.HBox(children=[plot_box, molecule_box], layout=ipy.Layout(align_items='center'))
@@ -82,9 +82,11 @@ class SimulationDashboard():
     def display(self, sim) -> None:
         '''Creates an instance of the dashboard in the output of the notebook cell it is called in.'''
         self.sim = sim
+        self._disable_observers() #! temporarily disabled as causes molecule display to break
         if self.sim.run_data['run'].max() > 0:
             self.run_slider.max = self.sim.run_data['run'].max()
             self.run_slider.min = 1
+        self._enable_observers() #! temporarily as causes molecule display to break
         display(self.display_widget)
     
     def live_update(self, sim, step: int, run_type: str, n_steps: int, temperature: float):
